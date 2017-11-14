@@ -1,4 +1,4 @@
-package StopWatch;
+package PPECode;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -12,7 +12,7 @@ import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
-
+//besoir
 public class fGestionRegate extends JFrame implements Runnable{
 	Thread t;
 	int hcnt=0,mcnt=0,scnt=0,mscnt =0;
