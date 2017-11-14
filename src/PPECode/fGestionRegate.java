@@ -26,6 +26,8 @@ public class fGestionRegate extends JFrame implements Runnable{
 	JLabel label1 = new JLabel("00:00:00");
 	JTextArea textArea = new JTextArea();
 	
+	// TEST CHANGEMENT MAXIME
+	
 	/**
 	 * Launch the application.
 	 */
