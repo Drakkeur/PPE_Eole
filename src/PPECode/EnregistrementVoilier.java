@@ -92,9 +92,8 @@ public class EnregistrementVoilier extends JFrame {
 		JButton btnEnregistrer = new JButton("Enregistrer");
 		btnEnregistrer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				voilier x = new voilier(tfNomV.getText(),Integer.parseInt(tfClasse.getText()),Integer.parseInt(tfRating.getText()),tfNomV.getText());
+				Voilier x = new Voilier(tfNomV.getText(),Integer.parseInt(tfClasse.getText()),Integer.parseInt(tfRating.getText()),tfNomV.getText());
 				lesVoiliers.add(x);
-				
 				setVisible(false);
 			}
 		});
