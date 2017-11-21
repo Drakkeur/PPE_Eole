@@ -21,7 +21,7 @@ public class EnregistrementVoilier extends JFrame {
 	private JTextField tfClasse;
 	private JTextField tfRating;
 	private JTextField tfNomS;
-	private ArrayList<voilier> lesVoiliers;
+	private ArrayList<Voilier> lesVoiliers;
 
 
 	/**
@@ -102,11 +102,11 @@ public class EnregistrementVoilier extends JFrame {
 		contentPane.add(btnEnregistrer);
 	}
 	
-	public ArrayList<voilier> getV() {
+	public ArrayList<Voilier> getV() {
 		return lesVoiliers;
 	}
 
-	public void setV(ArrayList<voilier> v) {
+	public void setV(ArrayList<Voilier> v) {
 		this.lesVoiliers = v;
 	}
 }
