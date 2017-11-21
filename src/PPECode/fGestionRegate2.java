@@ -5,28 +5,33 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JList;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JLabel;
-import javax.sound.midi.Transmitter;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
-import javax.swing.JScrollBar;
+
 
 public class fGestionRegate2 extends JFrame {
 
 	private JPanel contentPane;
-	//private int i = 1;
-	//private String x;
-	private JTable tbleCandidat;
-	private String titresColone[] = {"Voilier","Classe","Rating","Skipper","Temps"};
-	private final Class[] classColone = new Class[] { String.class, String.class,int.class, String.class };
-	private Object[][] data;
 	EnregistrementVoilier enr = new EnregistrementVoilier();
+	private JTable tbleCandidat;
+	private static DefaultTableModel mdle;
+	private JTextField textField;
 	
+	
+	public static DefaultTableModel getMdle() {
+		return mdle;
+	}
+
+	public static void setMdle(DefaultTableModel mdle) {
+		fGestionRegate2.mdle = mdle;
+	}
+
 	/**
 	 * Launch the application.
 	 */
@@ -47,7 +52,7 @@ public class fGestionRegate2 extends JFrame {
 	 * Create the frame.
 	 */
 	public fGestionRegate2() {
-		data = new Object[20][5];
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 615, 445);
 		contentPane = new JPanel();
@@ -56,12 +61,12 @@ public class fGestionRegate2 extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblCandidat = new JLabel("Candidats");
-		lblCandidat.setBounds(319, 314, 56, 14);
+		lblCandidat.setBounds(313, 314, 56, 14);
 		contentPane.add(lblCandidat);
 		
 		JLabel lblCourseFin = new JLabel("Course Fini");
 		lblCourseFin.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCourseFin.setBounds(505, 314, 79, 14);
+		lblCourseFin.setBounds(505, 314, 84, 14);
 		contentPane.add(lblCourseFin);
 		
 		JButton btnArriv = new JButton("Arriver");
@@ -81,12 +86,12 @@ public class fGestionRegate2 extends JFrame {
 				f.setVisible(true);
 			}
 		});
-		btnAjouter.setBounds(301, 339, 89, 23);
+		btnAjouter.setBounds(289, 339, 101, 23);
 		contentPane.add(btnAjouter);
 		
 		JLabel lblChrnomtre = new JLabel("Chronom\u00E8tre");
 		lblChrnomtre.setHorizontalAlignment(SwingConstants.CENTER);
-		lblChrnomtre.setBounds(414, 314, 63, 14);
+		lblChrnomtre.setBounds(400, 314, 95, 14);
 		contentPane.add(lblChrnomtre);
 		
 		JButton btnDmarer = new JButton("D\u00E9marer");
@@ -122,16 +127,51 @@ public class fGestionRegate2 extends JFrame {
 				System.exit(0);
 			}
 		});
-		btnQuitter.setBounds(15, 373, 89, 23);
+		btnQuitter.setBounds(10, 373, 89, 23);
 		contentPane.add(btnQuitter);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(15, 9, 569, 272);
+		scrollPane.setBounds(10, 11, 579, 260);
 		contentPane.add(scrollPane);
-	    
 		
-		tbleCandidat = new JTable(data,titresColone);
+		tbleCandidat = new JTable(new DefaultTableModel());
+		mdle = (DefaultTableModel) tbleCandidat.getModel();
+		mdle.addColumn("N°");
+		mdle.addColumn("Voilier");
+		mdle.addColumn("Classe");
+		mdle.addColumn("Rating");
+		mdle.addColumn("Skipper");
+		mdle.addColumn("Temps");
 		scrollPane.setViewportView(tbleCandidat);
+		
+		JButton btnSupprimer = new JButton("Supprimer");
+		btnSupprimer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				((DefaultTableModel)tbleCandidat.getModel()).removeRow(tbleCandidat.getSelectedRow());
+			}
+		});
+		btnSupprimer.setBounds(289, 373, 101, 23);
+		contentPane.add(btnSupprimer);
+		
+		JButton btnEntr = new JButton("Entr\u00E9");
+		btnEntr.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Regate r = new Regate();
+			}
+		});
+		btnEntr.setBounds(190, 339, 89, 23);
+		contentPane.add(btnEntr);
+		
+		textField = new JTextField();
+		textField.setBounds(134, 340, 46, 20);
+		contentPane.add(textField);
+		textField.setColumns(10);
+		
+		JLabel lblDistanceRgate = new JLabel("Distance R\u00E9gate");
+		lblDistanceRgate.setBounds(10, 343, 114, 14);
+		contentPane.add(lblDistanceRgate);
+		
+		
 		
 	}
 }

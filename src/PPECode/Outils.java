@@ -11,6 +11,7 @@ public class Outils {
 	}
 	
 	public double calTemps(){
+		handicap();
 		temps = temps*handicap;
 		return temps;
 	}

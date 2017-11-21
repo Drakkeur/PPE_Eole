@@ -22,6 +22,7 @@ public class EnregistrementVoilier extends JFrame {
 	private JTextField tfRating;
 	private JTextField tfNomS;
 	private ArrayList<Voilier> lesVoiliers;
+	int i=0;
 
 
 	/**
@@ -46,46 +47,46 @@ public class EnregistrementVoilier extends JFrame {
 	public EnregistrementVoilier() {
 		lesVoiliers = new ArrayList<>();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 205, 179);
+		setBounds(100, 100, 260, 179);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblNomVoiler = new JLabel("Nom Voiler");
-		lblNomVoiler.setBounds(10, 11, 57, 14);
+		lblNomVoiler.setBounds(10, 11, 86, 14);
 		contentPane.add(lblNomVoiler);
 		
 		JLabel lblClasseVoilier = new JLabel("Classe Voilier");
-		lblClasseVoilier.setBounds(10, 36, 67, 14);
+		lblClasseVoilier.setBounds(10, 36, 86, 14);
 		contentPane.add(lblClasseVoilier);
 		
 		JLabel lblRatingVoilier = new JLabel("Rating Voilier");
-		lblRatingVoilier.setBounds(10, 61, 67, 14);
+		lblRatingVoilier.setBounds(10, 61, 86, 14);
 		contentPane.add(lblRatingVoilier);
 		
 		JLabel lblNomSkipper = new JLabel("Nom Skipper");
-		lblNomSkipper.setBounds(10, 86, 67, 14);
+		lblNomSkipper.setBounds(10, 86, 86, 14);
 		contentPane.add(lblNomSkipper);
 		
 		tfNomV = new JTextField();
-		tfNomV.setBounds(91, 8, 86, 20);
+		tfNomV.setBounds(148, 11, 86, 20);
 		contentPane.add(tfNomV);
 		tfNomV.setColumns(10);
 		
 		tfClasse = new JTextField();
-		tfClasse.setBounds(91, 33, 86, 20);
+		tfClasse.setBounds(148, 36, 86, 20);
 		contentPane.add(tfClasse);
 		tfClasse.setColumns(10);
 		
 		tfRating = new JTextField();
 		tfRating.setColumns(10);
-		tfRating.setBounds(91, 58, 86, 20);
+		tfRating.setBounds(148, 61, 86, 20);
 		contentPane.add(tfRating);
 		
 		tfNomS = new JTextField();
 		tfNomS.setColumns(10);
-		tfNomS.setBounds(91, 83, 86, 20);
+		tfNomS.setBounds(148, 86, 86, 20);
 		contentPane.add(tfNomS);
 		
 		
@@ -94,6 +95,12 @@ public class EnregistrementVoilier extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Voilier x = new Voilier(tfNomV.getText(),Integer.parseInt(tfClasse.getText()),Integer.parseInt(tfRating.getText()),tfNomV.getText());
 				lesVoiliers.add(x);
+				if(i<19){
+					fGestionRegate2.getMdle().addRow(new Object[]{tfNomV.getText(),tfClasse.getText(),tfRating.getText(),tfNomV.getText()});
+					i++;
+				}else{
+					System.out.println("Nombre Maximum de participant atteint, veuillez en suprimer pour en ajouter de nouveaux");
+				}
 				setVisible(false);
 			}
 		});
