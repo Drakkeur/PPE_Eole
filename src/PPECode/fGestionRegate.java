@@ -22,8 +22,8 @@ public class fGestionRegate extends JFrame implements Runnable{
 	private int i = 1;
 	private String x;
 	public static JList<String> listCandidats = new JList<String>();
-	JLabel label = new JLabel("000");
-	JLabel label1 = new JLabel("00:00:00");
+	JLabel tmpsMs = new JLabel("000");
+	JLabel tmpsHMS = new JLabel("00:00:00");
 	JTextArea textArea = new JTextArea();
 	
 	// TEST CHANGEMENT MAXIME
@@ -76,17 +76,7 @@ public class fGestionRegate extends JFrame implements Runnable{
 		});
 		btnFinCourse.setBounds(324, 194, 89, 23);
 		contentPane.add(btnFinCourse);
-		
-		JButton btnAjouter = new JButton("Ajouter");
-		btnAjouter.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				EnregistrementVoilier f = new EnregistrementVoilier();
 
-				f.setVisible(true);
-			}
-		});
-		btnAjouter.setBounds(20, 194, 89, 23);
-		contentPane.add(btnAjouter);
 		
 		JLabel lblChrnomtre = new JLabel("Chronom\u00E8tre");
 		lblChrnomtre.setHorizontalAlignment(SwingConstants.CENTER);
@@ -130,14 +120,7 @@ public class fGestionRegate extends JFrame implements Runnable{
 		btnEnd.setBounds(221, 71, 90, 23);
 		contentPane.add(btnEnd);
 		
-		JButton btnRsultats = new JButton("R\u00E9sultats");
-		btnRsultats.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
-		btnRsultats.setBounds(324, 228, 89, 23);
-		contentPane.add(btnRsultats);
+		
 		
 		JButton btnQuitter = new JButton("Quitter");
 		btnQuitter.addActionListener(new ActionListener() {
@@ -149,12 +132,12 @@ public class fGestionRegate extends JFrame implements Runnable{
 		contentPane.add(btnQuitter);
 		
 		
-		label.setBounds(221, 37, 46, 23);
-		contentPane.add(label);
+		tmpsMs.setBounds(221, 37, 46, 23);
+		contentPane.add(tmpsMs);
 		
 		
-		label1.setBounds(156, 37, 55, 23);
-		contentPane.add(label1);
+		tmpsHMS.setBounds(156, 37, 55, 23);
+		contentPane.add(tmpsHMS);
 		
 	
 		textArea.setBounds(324, 11, 100, 162);
@@ -165,8 +148,8 @@ public class fGestionRegate extends JFrame implements Runnable{
 	}
 
 	public void display(){
-		label1.setText(nstr);
-		label.setText(mstr);
+		tmpsHMS.setText(nstr);
+		tmpsMs.setText(mstr);
 		
 	}
 	public void reset(){
@@ -245,9 +228,10 @@ public class fGestionRegate extends JFrame implements Runnable{
 		}
 		
 	}
+	
 	public void printToList(){
 		cnt2++;
-		dstr+="\n"+cnt2+") "+label1.getText()+" "+label.getText()+"\n";
+		dstr+="\n"+cnt2+") "+tmpsHMS.getText()+" "+tmpsMs.getText()+"\n";
 		textArea.setText(dstr);
 		
 	}

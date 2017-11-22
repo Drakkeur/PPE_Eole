@@ -108,12 +108,12 @@ public class EnregistrementVoilier extends JFrame {
 		contentPane.add(btnEnregistrer);
 	}
 	
-	public ArrayList<Voilier> getV() {
+	/*public ArrayList<Voilier> getV() {
 		return lesVoiliers;
 	}
 
 	public void setV(ArrayList<Voilier> v) {
 		this.lesVoiliers = v;
-	}
+	}*/
 }
 
