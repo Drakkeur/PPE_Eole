@@ -19,9 +19,9 @@ public class fGestionRegate2 extends JFrame {
 
 	private JPanel contentPane;
 	EnregistrementVoilier enr = new EnregistrementVoilier();
-	private JTable tbleCandidat;
+	public static JTable tbleCandidat;
 	private static DefaultTableModel mdle;
-	private JTextField textField;
+	private JTextField tfDistReg;
 	
 	
 	public static DefaultTableModel getMdle() {
@@ -148,6 +148,14 @@ public class fGestionRegate2 extends JFrame {
 		btnSupprimer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				((DefaultTableModel)tbleCandidat.getModel()).removeRow(tbleCandidat.getSelectedRow());
+				for(int j = 0;j<fGestionRegate2.tbleCandidat.getRowCount();j++){
+					if(j!=(int)fGestionRegate2.tbleCandidat.getModel().getValueAt(j, 0)){
+						for(int jSuite = j; jSuite<fGestionRegate2.tbleCandidat.getRowCount();jSuite++){
+							fGestionRegate2.tbleCandidat.setValueAt(jSuite+1, jSuite, 0);
+						}
+						break;
+					}
+				}
 			}
 		});
 		btnSupprimer.setBounds(289, 373, 101, 23);
@@ -156,16 +164,16 @@ public class fGestionRegate2 extends JFrame {
 		JButton btnEntr = new JButton("Entr\u00E9");
 		btnEntr.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Regate r = new Regate();
+				Regate r = new Regate(Integer.parseInt(tfDistReg.getText()));
 			}
 		});
 		btnEntr.setBounds(190, 339, 89, 23);
 		contentPane.add(btnEntr);
 		
-		textField = new JTextField();
-		textField.setBounds(134, 340, 46, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		tfDistReg = new JTextField();
+		tfDistReg.setBounds(134, 340, 46, 20);
+		contentPane.add(tfDistReg);
+		tfDistReg.setColumns(10);
 		
 		JLabel lblDistanceRgate = new JLabel("Distance R\u00E9gate");
 		lblDistanceRgate.setBounds(10, 343, 114, 14);

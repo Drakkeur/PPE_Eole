@@ -1,18 +1,18 @@
 package PPECode;
 
 public class Regate {
-	private int distMilles;
+	private static int distMilles;
 
 	public Regate(int distMilles){
-		this.distMilles = distMilles;
+		Regate.distMilles = distMilles;
 	}
 	
-	public int getDistMilles() {
+	public static int getDistMilles() {
 		return distMilles;
 	}
 
 	public void setDistMilles(int distMilles) {
-		this.distMilles = distMilles;
+		Regate.distMilles = distMilles;
 	}
 	
 }

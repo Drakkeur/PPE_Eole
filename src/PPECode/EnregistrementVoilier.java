@@ -4,13 +4,14 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import jdk.nashorn.internal.scripts.JS;
+
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Vector;
 import java.awt.event.ActionEvent;
 
 public class EnregistrementVoilier extends JFrame {
@@ -22,7 +23,6 @@ public class EnregistrementVoilier extends JFrame {
 	private JTextField tfRating;
 	private JTextField tfNomS;
 	private ArrayList<Voilier> lesVoiliers;
-	int i=0;
 
 
 	/**
@@ -93,11 +93,11 @@ public class EnregistrementVoilier extends JFrame {
 		JButton btnEnregistrer = new JButton("Enregistrer");
 		btnEnregistrer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Voilier x = new Voilier(tfNomV.getText(),Integer.parseInt(tfClasse.getText()),Integer.parseInt(tfRating.getText()),tfNomV.getText());
-				lesVoiliers.add(x);
-				if(i<19){
-					fGestionRegate2.getMdle().addRow(new Object[]{tfNomV.getText(),tfClasse.getText(),tfRating.getText(),tfNomV.getText()});
-					i++;
+				int i = fGestionRegate2.tbleCandidat.getRowCount()+1;
+				if(fGestionRegate2.tbleCandidat.getRowCount()<=19){
+					fGestionRegate2.getMdle().addRow(new Object[]{i,tfNomV.getText(),tfClasse.getText(),tfRating.getText(),tfNomV.getText()});
+					//Voilier x = new Voilier(tfNomV.getText(),Integer.parseInt(tfClasse.getText()),Integer.parseInt(tfRating.getText()),tfNomV.getText());
+					//lesVoiliers.add(x);
 				}else{
 					System.out.println("Nombre Maximum de participant atteint, veuillez en suprimer pour en ajouter de nouveaux");
 				}

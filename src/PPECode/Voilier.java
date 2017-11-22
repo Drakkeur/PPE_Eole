@@ -2,6 +2,7 @@ package PPECode;
 
 public class Voilier {
 	
+	private static int num;
 	private static String nomVoilier;
 	private static int classeVoilier;
 	private static int ratingVoilier;
@@ -10,7 +11,7 @@ public class Voilier {
 	private int Temps;
 	private int index;
 	
-	public Voilier( String nom, int classe, int rating, String nomSkipper){
+	public Voilier(String nom, int classe, int rating, String nomSkipper){
 		
 		Voilier.nomVoilier = nom;
 		Voilier.classeVoilier = classe;
@@ -34,7 +35,7 @@ public class Voilier {
 		Voilier.classeVoilier = classeVoilier;
 	}
 
-	public int getRatingVoilier() {
+	public static int getRatingVoilier() {
 		return ratingVoilier;
 	}
 
