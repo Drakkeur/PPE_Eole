@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 
@@ -122,7 +123,11 @@ public class fGestionRegate extends JFrame implements Runnable {
 		JButton btnRsultats = new JButton("Resultats");
 		btnRsultats.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				for(int i = 0; i < tbleCandidat.getColumnCount()-1;i++){
+					O.setRatingvoilier(i);
+					O.setStemps(i);
+					tbleCandidat.setValueAt(O.calTemps(),i,6);
+				}
 			}
 		});
 		btnRsultats.setBounds(289, 373, 101, 23);
@@ -149,6 +154,7 @@ public class fGestionRegate extends JFrame implements Runnable {
 		mdle.addColumn("Rating");
 		mdle.addColumn("Skipper");
 		mdle.addColumn("Temps");
+		mdle.addColumn("Temps Reel");
 		scrollPane.setViewportView(tbleCandidat);
 		
 		JButton btnSupprimer = new JButton("Supprimer");
@@ -171,7 +177,12 @@ public class fGestionRegate extends JFrame implements Runnable {
 		JButton btnEntr = new JButton("Entrer");
 		btnEntr.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Regate r = new Regate(Integer.parseInt(tfDistReg.getText()));
+				try{
+					Regate r = new Regate(Integer.parseInt(tfDistReg.getText()));
+				}catch(Exception e1){
+					System.out.println("veuillez entrer une distance en Milles nautiques");
+				}
+				
 			}
 		});
 		btnEntr.setBounds(190, 339, 89, 23);

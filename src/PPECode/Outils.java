@@ -12,18 +12,13 @@ public class Outils {
 	private double tempsMin;
 	private double tempsSeconde;
 	private float t; //secondes
-	private double ratingvoilier = 1.5;
-	private String sTemps = "01:10:07";
+	private double ratingvoilier;
+	private String sTemps;
 	private String sHeure = "";
 	private String sMinute = "";
 	private String sSeconde = "";
+	private double distMille = Regate.getDistMilles();
 
-	public static void main(String[] args){
-		Outils O = new Outils();
-		O.calTemps();
-	}
-	
-	
 	public double traitementTemps(){
 		for(int j = 0; j<2;j++){
 			sHeure += sTemps.substring(j,j+1);
@@ -41,12 +36,11 @@ public class Outils {
 	}
 
 	public double handicap(){
-		 return (5143/(Math.sqrt(ratingvoilier)+3.5)*1/*Regate.getDistMilles()*/);
+		 return (5143/(Math.sqrt(ratingvoilier)+3.5)*distMille);
 	}
 	
 	public String calTemps(){
 		tempsHeure = traitementTemps()/60;
-		System.out.println(tempsHeure);
 		int i = 0;
 		while(tempsHeure>60){
 			tempsHeure -= 60;
@@ -57,19 +51,17 @@ public class Outils {
 		int tmp = (int) tempsMin;
 		tempsSeconde = (tempsMin - tmp)*100;
 		tempsMin = tmp;
-		temps = (int)tempsHeure + ":"+(int)tempsMin+":"+(int)tempsSeconde;
-		System.out.println(temps);
-		return temps;
+		return temps= (int)tempsHeure + ":"+(int)tempsMin+":"+(int)tempsSeconde;
 		
 	}
 
-	public void setRatingvoilier() {
-		ratingvoilier = (int) fGestionRegate.tbleCandidat.getValueAt(fGestionRegate.tbleCandidat.getSelectedRow(),3);
+	public void setRatingvoilier(int i) {
+		ratingvoilier = Integer.parseInt((String) fGestionRegate.tbleCandidat.getModel().getValueAt(i,3));
 	}
 
 
-	public void setStemps() {
-		sTemps = (String) fGestionRegate.tbleCandidat.getValueAt(fGestionRegate.tbleCandidat.getSelectedRow(),5);
+	public void setStemps(int i) {
+		sTemps = (String) fGestionRegate.tbleCandidat.getModel().getValueAt(i,5);
 	}
 	
 }
