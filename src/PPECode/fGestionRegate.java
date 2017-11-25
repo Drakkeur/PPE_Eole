@@ -56,6 +56,7 @@ public class fGestionRegate extends JFrame implements Runnable {
 	 * Create the frame.
 	 */
 	public fGestionRegate() {
+		Outils O = new Outils();
 		t = new Thread(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 615, 445);

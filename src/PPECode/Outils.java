@@ -2,60 +2,74 @@ package PPECode;
 
 import java.math.BigDecimal;
 
+import com.sun.javafx.css.CalculatedValue;
+
 public class Outils {
 	
 
-	private double temps;
-	private float t;
-	private int ratingvoilier;
-	private String s= "05:05:05 129";
+	private String temps;
+	private double tempsHeure;
+	private double tempsMin;
+	private double tempsSeconde;
+	private float t; //secondes
+	private double ratingvoilier = 1.5;
+	private String sTemps = "01:10:07";
 	private String sHeure = "";
 	private String sMinute = "";
 	private String sSeconde = "";
-	private String sMillisec = "";
-	
-	
-	public static void main(String[] agrs){
+
+	public static void main(String[] args){
 		Outils O = new Outils();
-		O.traitementTemps();
+		O.calTemps();
 	}
 	
 	
 	public double traitementTemps(){
 		for(int j = 0; j<2;j++){
-			sHeure += s.substring(j,j+1);
+			sHeure += sTemps.substring(j,j+1);
 		}
-		t = Integer.parseInt(sHeure)*60;
-		System.out.println(t);
+		t = Integer.parseInt(sHeure)*3600;
 		for(int j = 3; j<5;j++){
-			sMinute += s.substring(j,j+1);
+			sMinute += sTemps.substring(j,j+1);
 		}
-		t += Integer.parseInt(sMinute);
-		System.out.println(t);
+		t += Integer.parseInt(sMinute)*60;
 		for(int j = 6; j<8;j++){
-			sSeconde += s.substring(j,j+1);
+			sSeconde += sTemps.substring(j,j+1);
 		}
-		t+= Double.parseDouble(sSeconde)/100;
-		System.out.println(t);
-		for(int j =9; j<s.length();j++){
-			sMillisec += s.substring(j,j+1);
-		}
-		System.out.println(Double.parseDouble(sMillisec)/100000);
-		t+= Double.parseDouble(sMillisec)/100000;
-		System.out.println(t);
-		return t;
-	}
-	
-	public double handicap(){
-		 return (5143/(Math.sqrt(2)+3.5)*Regate.getDistMilles());
-	}
-	
-	public double calTemps(){
-		return temps *= handicap();
+		t+= Double.parseDouble(sSeconde);
+		return t + handicap();
 	}
 
-	public void setS() {
-		s = (String) fGestionRegate.tbleCandidat.getValueAt(fGestionRegate.tbleCandidat.getSelectedRow(),5);
+	public double handicap(){
+		 return (5143/(Math.sqrt(ratingvoilier)+3.5)*1/*Regate.getDistMilles()*/);
+	}
+	
+	public String calTemps(){
+		tempsHeure = traitementTemps()/60;
+		System.out.println(tempsHeure);
+		int i = 0;
+		while(tempsHeure>60){
+			tempsHeure -= 60;
+			i++;
+		}
+		tempsMin = tempsHeure;
+		tempsHeure = i;
+		int tmp = (int) tempsMin;
+		tempsSeconde = (tempsMin - tmp)*100;
+		tempsMin = tmp;
+		temps = (int)tempsHeure + ":"+(int)tempsMin+":"+(int)tempsSeconde;
+		System.out.println(temps);
+		return temps;
+		
+	}
+
+	public void setRatingvoilier() {
+		ratingvoilier = (int) fGestionRegate.tbleCandidat.getValueAt(fGestionRegate.tbleCandidat.getSelectedRow(),3);
+	}
+
+
+	public void setStemps() {
+		sTemps = (String) fGestionRegate.tbleCandidat.getValueAt(fGestionRegate.tbleCandidat.getSelectedRow(),5);
 	}
 	
 }
