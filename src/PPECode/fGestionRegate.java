@@ -14,7 +14,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 
-public class fGestionRegate2 extends JFrame implements Runnable {
+public class fGestionRegate extends JFrame implements Runnable {
 	Thread t;
 	int hcnt=0,mcnt=0,scnt=0,mscnt =0;
 	String str = "", nstr="",mstr="",dstr="";
@@ -33,7 +33,7 @@ public class fGestionRegate2 extends JFrame implements Runnable {
 	}
 
 	public static void setMdle(DefaultTableModel mdle) {
-		fGestionRegate2.mdle = mdle;
+		fGestionRegate.mdle = mdle;
 	}
 
 	/**
@@ -43,7 +43,7 @@ public class fGestionRegate2 extends JFrame implements Runnable {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					fGestionRegate2 frame = new fGestionRegate2();
+					fGestionRegate frame = new fGestionRegate();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -55,7 +55,7 @@ public class fGestionRegate2 extends JFrame implements Runnable {
 	/**
 	 * Create the frame.
 	 */
-	public fGestionRegate2() {
+	public fGestionRegate() {
 		t = new Thread(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 615, 445);
@@ -154,10 +154,10 @@ public class fGestionRegate2 extends JFrame implements Runnable {
 		btnSupprimer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				((DefaultTableModel)tbleCandidat.getModel()).removeRow(tbleCandidat.getSelectedRow());
-				for(int j = 0;j<fGestionRegate2.tbleCandidat.getRowCount();j++){
-					if(j!=(int)fGestionRegate2.tbleCandidat.getModel().getValueAt(j, 0)){
-						for(int jSuite = j; jSuite<fGestionRegate2.tbleCandidat.getRowCount();jSuite++){
-							fGestionRegate2.tbleCandidat.setValueAt(jSuite+1, jSuite, 0);
+				for(int j = 0;j<fGestionRegate.tbleCandidat.getRowCount();j++){
+					if(j!=(int)fGestionRegate.tbleCandidat.getModel().getValueAt(j, 0)){
+						for(int jSuite = j; jSuite<fGestionRegate.tbleCandidat.getRowCount();jSuite++){
+							fGestionRegate.tbleCandidat.setValueAt(jSuite+1, jSuite, 0);
 						}
 						break;
 					}

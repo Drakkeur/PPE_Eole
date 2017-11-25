@@ -93,9 +93,9 @@ public class EnregistrementVoilier extends JFrame {
 		JButton btnEnregistrer = new JButton("Enregistrer");
 		btnEnregistrer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int i = fGestionRegate2.tbleCandidat.getRowCount()+1;
-				if(fGestionRegate2.tbleCandidat.getRowCount()<=19){
-					fGestionRegate2.getMdle().addRow(new Object[]{i,tfNomV.getText(),tfClasse.getText(),tfRating.getText(),tfNomV.getText()});
+				int i = fGestionRegate.tbleCandidat.getRowCount()+1;
+				if(fGestionRegate.tbleCandidat.getRowCount()<=19){
+					fGestionRegate.getMdle().addRow(new Object[]{i,tfNomV.getText(),tfClasse.getText(),tfRating.getText(),tfNomV.getText()});
 					//Voilier x = new Voilier(tfNomV.getText(),Integer.parseInt(tfClasse.getText()),Integer.parseInt(tfRating.getText()),tfNomV.getText());
 					//lesVoiliers.add(x);
 				}else{
