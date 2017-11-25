@@ -20,6 +20,7 @@ public class Outils {
 	private double distMille = Regate.getDistMilles();
 
 	public double traitementTemps(){
+		t = 0;
 		for(int j = 0; j<2;j++){
 			sHeure += sTemps.substring(j,j+1);
 		}
@@ -40,6 +41,7 @@ public class Outils {
 	}
 	
 	public String calTemps(){
+		temps = "";
 		tempsHeure = traitementTemps()/60;
 		int i = 0;
 		while(tempsHeure>60){
@@ -51,16 +53,18 @@ public class Outils {
 		int tmp = (int) tempsMin;
 		tempsSeconde = (tempsMin - tmp)*100;
 		tempsMin = tmp;
-		return temps= (int)tempsHeure + ":"+(int)tempsMin+":"+(int)tempsSeconde;
+		return temps = (int)tempsHeure + ":"+(int)tempsMin+":"+(int)tempsSeconde;
 		
 	}
 
 	public void setRatingvoilier(int i) {
+		ratingvoilier = 0;
 		ratingvoilier = Integer.parseInt((String) fGestionRegate.tbleCandidat.getModel().getValueAt(i,3));
 	}
 
 
 	public void setStemps(int i) {
+		sTemps = "";
 		sTemps = (String) fGestionRegate.tbleCandidat.getModel().getValueAt(i,5);
 	}
 	

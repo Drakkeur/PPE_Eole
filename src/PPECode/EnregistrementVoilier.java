@@ -95,9 +95,21 @@ public class EnregistrementVoilier extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				int i = fGestionRegate.tbleCandidat.getRowCount()+1;
 				if(fGestionRegate.tbleCandidat.getRowCount()<=19){
-					fGestionRegate.getMdle().addRow(new Object[]{i,tfNomV.getText(),tfClasse.getText(),tfRating.getText(),tfNomV.getText()});
-					//Voilier x = new Voilier(tfNomV.getText(),Integer.parseInt(tfClasse.getText()),Integer.parseInt(tfRating.getText()),tfNomV.getText());
-					//lesVoiliers.add(x);
+					try{
+						if(tfNomV.getText() != null){
+							if(tfClasse.getText() != null){
+								if(tfRating.getText() != null){
+									if(tfNomS.getText() != null){
+										fGestionRegate.getMdle().addRow(new Object[]{i,tfNomV.getText(),tfClasse.getText(),tfRating.getText(),tfNomS.getText()});
+									}
+								}
+							}
+						}else{
+							fGestionRegate.lblInfo.setText("Erreur d'entréé d'une des valeurs d'un candidat");
+						}
+					}catch (Exception e1) {
+					
+					}
 				}else{
 					System.out.println("Nombre Maximum de participant atteint, veuillez en suprimer pour en ajouter de nouveaux");
 				}

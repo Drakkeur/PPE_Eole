@@ -27,6 +27,7 @@ public class fGestionRegate extends JFrame implements Runnable {
 	private JTextField tfDistReg;
 	JLabel tmpsMs = new JLabel("000");
 	JLabel tmpsHMS = new JLabel("00:00:00");
+	static JLabel lblInfo = new JLabel("");
 	
 	
 	public static DefaultTableModel getMdle() {
@@ -57,7 +58,7 @@ public class fGestionRegate extends JFrame implements Runnable {
 	 * Create the frame.
 	 */
 	public fGestionRegate() {
-		Outils O = new Outils();
+		
 		t = new Thread(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 615, 445);
@@ -67,9 +68,12 @@ public class fGestionRegate extends JFrame implements Runnable {
 		contentPane.setLayout(null);
 		
 		JLabel lblCandidat = new JLabel("Candidats");
-		lblCandidat.setBounds(313, 291, 56, 14);
+		lblCandidat.setBounds(509, 314, 56, 14);
 		contentPane.add(lblCandidat);
 		
+		
+		lblInfo.setBounds(181, 282, 408, 23);
+		contentPane.add(lblInfo);
 		
 		JButton btnAjouter = new JButton("Ajouter");
 		btnAjouter.addActionListener(new ActionListener() {
@@ -78,12 +82,12 @@ public class fGestionRegate extends JFrame implements Runnable {
 				f.setVisible(true);
 			}
 		});
-		btnAjouter.setBounds(289, 310, 101, 23);
+		btnAjouter.setBounds(488, 339, 101, 23);
 		contentPane.add(btnAjouter);
 		
 		JLabel lblChrnomtre = new JLabel("Chronometre");
 		lblChrnomtre.setHorizontalAlignment(SwingConstants.CENTER);
-		lblChrnomtre.setBounds(400, 314, 95, 14);
+		lblChrnomtre.setBounds(119, 377, 95, 14);
 		contentPane.add(lblChrnomtre);
 		
 		JButton btnDmarer = new JButton("Demarer");
@@ -106,7 +110,7 @@ public class fGestionRegate extends JFrame implements Runnable {
 				}
 			}
 		});
-		btnDmarer.setBounds(400, 339, 89, 23);
+		btnDmarer.setBounds(119, 339, 89, 23);
 		contentPane.add(btnDmarer);
 		
 		JButton btnArret = new JButton("Arreter");
@@ -117,20 +121,21 @@ public class fGestionRegate extends JFrame implements Runnable {
 				btnDmarer.setText("Demarer");
 			}
 		});
-		btnArret.setBounds(400, 373, 90, 23);
+		btnArret.setBounds(223, 339, 90, 23);
 		contentPane.add(btnArret);
 
 		JButton btnRsultats = new JButton("Resultats");
 		btnRsultats.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				for(int i = 0; i < tbleCandidat.getColumnCount()-1;i++){
+				for(int i = 0; i < tbleCandidat.getRowCount();i++){
+					Outils O = new Outils();
 					O.setRatingvoilier(i);
 					O.setStemps(i);
 					tbleCandidat.setValueAt(O.calTemps(),i,6);
 				}
 			}
 		});
-		btnRsultats.setBounds(289, 373, 101, 23);
+		btnRsultats.setBounds(488, 373, 101, 23);
 		contentPane.add(btnRsultats);
 		
 		JButton btnQuitter = new JButton("Quitter");
@@ -171,38 +176,49 @@ public class fGestionRegate extends JFrame implements Runnable {
 				}
 			}
 		});
-		btnSupprimer.setBounds(289, 339, 101, 23);
+		btnSupprimer.setBounds(377, 339, 101, 23);
 		contentPane.add(btnSupprimer);
 		
-		JButton btnEntr = new JButton("Entrer");
-		btnEntr.addActionListener(new ActionListener() {
+		JButton btnValid = new JButton("Valider");
+		btnValid.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
 					Regate r = new Regate(Integer.parseInt(tfDistReg.getText()));
 				}catch(Exception e1){
-					System.out.println("veuillez entrer une distance en Milles nautiques");
+					lblInfo.setText("Veuillez entrer une distance en Milles nautiques");
 				}
 				
 			}
 		});
-		btnEntr.setBounds(190, 339, 89, 23);
-		contentPane.add(btnEntr);
+		btnValid.setBounds(66, 287, 89, 23);
+		contentPane.add(btnValid);
 		
 		tfDistReg = new JTextField();
-		tfDistReg.setBounds(134, 340, 46, 20);
+		tfDistReg.setBounds(10, 288, 46, 20);
 		contentPane.add(tfDistReg);
 		tfDistReg.setColumns(10);
 		
 		JLabel lblDistanceRgate = new JLabel("Distance Regate");
-		lblDistanceRgate.setBounds(10, 343, 114, 14);
+		lblDistanceRgate.setBounds(10, 272, 114, 14);
 		contentPane.add(lblDistanceRgate);
 		
 		//Chrono afficheur
-		tmpsHMS.setBounds(20, 282, 79, 32);
+		tmpsHMS.setBounds(214, 368, 56, 32);
 		contentPane.add(tmpsHMS);
 	
-		tmpsMs.setBounds(134, 282, 46, 32);
+		tmpsMs.setBounds(280, 368, 46, 32);
 		contentPane.add(tmpsMs);
+		
+		JButton btnAbandon = new JButton("Abandon");
+		btnAbandon.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				tbleCandidat.setValueAt("00:00:00 000",tbleCandidat.getSelectedRow(),5);
+			}
+		});
+		btnAbandon.setBounds(377, 373, 101, 23);
+		contentPane.add(btnAbandon);
+		
+		
 	}
 	
 	
