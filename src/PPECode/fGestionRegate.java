@@ -14,7 +14,7 @@ import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
-//test
+//testtesthfhfvhfhf
 public class fGestionRegate extends JFrame implements Runnable {
 	Thread t;
 	int hcnt=0,mcnt=0,scnt=0,mscnt =0;
