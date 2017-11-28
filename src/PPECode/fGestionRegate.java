@@ -12,9 +12,12 @@ import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
-//testtesthfhfvhfhf
+
 public class fGestionRegate extends JFrame implements Runnable {
 	Thread t;
 	int hcnt=0,mcnt=0,scnt=0,mscnt =0;
@@ -127,12 +130,26 @@ public class fGestionRegate extends JFrame implements Runnable {
 		JButton btnRsultats = new JButton("Resultats");
 		btnRsultats.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				for(int i = 0; i < tbleCandidat.getRowCount();i++){
+				for(int i = 0; i < tbleCandidat.getRowCount();i++)
+				{
 					Outils O = new Outils();
 					O.setRatingvoilier(i);
 					O.setStemps(i);
 					tbleCandidat.setValueAt(O.calTemps(),i,6);
 				}
+				try {
+					BufferedWriter writer = new BufferedWriter(new FileWriter(new File("Participants")));
+					// normalement si le fichier n'existe pas, il est crée à la racine du projet
+					String part = tbleCandidat.toString();
+					writer.write(part);
+					
+					writer.close();
+					}
+					catch (IOException a)
+					{
+					a.printStackTrace();
+					}
+
 			}
 		});
 		btnRsultats.setBounds(488, 373, 101, 23);
